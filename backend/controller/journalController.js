@@ -19,6 +19,7 @@ exports.createJournal = async (req, res, next) => {
   }
 };
 exports.getAllJournals = async (req, res, next) => {
+  console.log("route hitting");
   try {
     const journals = await Journal.find().sort({ updatedAt: -1 }); // newest first
     res.json(journals);
