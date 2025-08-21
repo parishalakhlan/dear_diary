@@ -7,7 +7,17 @@ const cors = require("cors");
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000" })); // allow frontend
+const allowedOrigins = [
+  "http://localhost:3000", // local dev
+  "https://dear-diary-henna.vercel.app", // deployed frontend
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+); // allow frontend
 
 mongoose
   .connect(process.env.MONGO_URI)
