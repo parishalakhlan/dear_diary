@@ -11,9 +11,8 @@ export interface Journal {
 
 // Change this if backend runs on a different port / deployed
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
 });
-
 // Helper function for typed responses
 const handleResponse = <T>(response: AxiosResponse<T>): T => response.data;
 

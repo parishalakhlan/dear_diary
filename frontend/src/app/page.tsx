@@ -11,7 +11,7 @@ import {
   updateJournal,
 } from "@/utils/api";
 import toast from "react-hot-toast";
-import next from "next";
+
 export default function Home() {
   const [journals, setJournals] = useState<Journal[]>([]);
   const [title, setTitle] = useState("");
@@ -22,9 +22,14 @@ export default function Home() {
   const [editContent, setEditContent] = useState("");
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
-  const [selectedWallpaper, setSelectedWallpaper] = useState<string>(
-    localStorage.getItem("wallpaper") || ""
-  );
+  const [selectedWallpaper, setSelectedWallpaper] = useState<string>("");
+
+  useEffect(() => {
+    // Check if we're on the client side
+    if (typeof window !== "undefined") {
+      setSelectedWallpaper(localStorage.getItem("wallpaper") || "");
+    }
+  }, []);
 
   const fetchJournals = async () => {
     try {
