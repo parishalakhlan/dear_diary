@@ -7,12 +7,19 @@ export interface Journal {
   content: string;
   createdAt: string;
   updatedAt?: string;
+  font: string; // Add this line
 }
 
 // Change this if backend runs on a different port / deployed
+
 const API = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
 });
+/*
+const API = axios.create({
+  baseURL: "http://localhost:5000/api",
+});
+*/
 // Helper function for typed responses
 const handleResponse = <T>(response: AxiosResponse<T>): T => response.data;
 
@@ -23,6 +30,7 @@ export const getJournals = (): Promise<Journal[]> =>
 export const createJournal = (data: {
   title: string;
   content: string;
+  font: string;
 }): Promise<Journal> =>
   API.post<Journal>("/journals", data).then(handleResponse);
 
@@ -31,7 +39,7 @@ export const getJournalById = (id: string): Promise<Journal> =>
 
 export const updateJournal = (
   id: string,
-  data: { title: string; content: string }
+  data: { title: string; content: string; font: string }
 ): Promise<Journal> =>
   API.put<Journal>(`/journals/${id}`, data).then(handleResponse);
 

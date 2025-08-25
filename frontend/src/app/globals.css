@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+/* Define font classes */
+.font-georgia {
+  font-family: Georgia, serif;
+}
+
+.font-comic {
+  font-family: "Comic Sans MS", cursive;
+}
+
+.font-cursive {
+  font-family: cursive;
+}
+
+.font-arial {
+  font-family: Arial, sans-serif;
+}
+
+.font-times {
+  font-family: "Times New Roman", serif;
+}
