@@ -11,6 +11,11 @@ const journalSchema = new mongoose.Schema(
       type: String,
       required: true, // must have content
     },
+    font: {
+      type: String,
+      default: "georgia", // default font
+      enum: ["georgia", "comic", "cursive", "arial", "times"], // optional: restrict to valid values
+    },
     createdAt: {
       type: Date,
       default: Date.now, // auto set when created

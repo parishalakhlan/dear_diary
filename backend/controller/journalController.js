@@ -1,7 +1,7 @@
 const Journal = require("../models/Journal");
 exports.createJournal = async (req, res, next) => {
   try {
-    const { title, content } = req.body;
+    const { title, content, font } = req.body;
     if (!title || !content) {
       return res
         .status(400)
@@ -10,6 +10,7 @@ exports.createJournal = async (req, res, next) => {
     const journal = new Journal({
       title,
       content,
+      font: font || "georgia",
     });
     const savedJournal = await journal.save();
 
@@ -46,12 +47,12 @@ exports.getJournalById = async (req, res, next) => {
 // @route   PUT /api/journals/:id
 exports.updateJournal = async (req, res, next) => {
   try {
-    const { title, content } = req.body;
+    const { title, content, font } = req.body;
 
     // Find journal and update it
     const updatedJournal = await Journal.findByIdAndUpdate(
       req.params.id,
-      { title, content },
+      { title, content, font },
       { new: true, runValidators: true } // return updated doc & validate
     );
 
